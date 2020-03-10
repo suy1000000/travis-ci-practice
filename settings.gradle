@@ -1,0 +1,4 @@
+rootProject.name = 'example'
+include 'rest-api-base'
+include ":api-response"
+project(":api-response").projectDir = file("rest-api-base/api-response")
