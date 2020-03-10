@@ -2,9 +2,9 @@ branches:
   only: master
 env:
   global:
-  - S3_BUCKET_NAME= ff-code-deploy-bucket
-  - CODEDEPLOY_APPLICATION= ff-codedeploy-app
-  - CODEDEPLOY_GROUP= codedeploy-group
+  - S3_BUCKET_NAME=ff-code-deploy-bucket
+  - CODEDEPLOY_APPLICATION=ff-codedeploy-app
+  - CODEDEPLOY_GROUP=codedeploy-group
   - REGION=ap-northeast-1
   - LOCAL_DIR=deploy
 script:
