@@ -1,0 +1,33 @@
+branches:
+  only: master
+env:
+  global:
+  - S3_BUCKET_NAME= ff-code-deploy-bucket
+  - CODEDEPLOY_APPLICATION= ff-codedeploy-app
+  - CODEDEPLOY_GROUP= codedeploy-group
+  - REGION=ap-northeast-1
+  - LOCAL_DIR=deploy
+script:
+- zip release index.html scripts/* appspec.yml
+- mkdir ${LOCAL_DIR}
+- mv release.zip ${LOCAL_DIR}/
+deploy:
+- provider: s3
+  bucket: "${S3_BUCKET_NAME}"
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  local_dir: "${LOCAL_DIR}"
+  skip_cleanup: true
+  region: "${REGION}"
+  on:
+    branch: master
+- provider: codedeploy
+  bucket: "${S3_BUCKET_NAME}"
+  access_key_id: "$AWS_ACCESS_KEY_ID"
+  secret_access_key: "$AWS_SECRET_ACCESS_KEY"
+  key: release.zip
+  application: "${CODEDEPLOY_APPLICATION}"
+  deployment_group: "${CODEDEPLOY_GROUP}"
+  region: "${REGION}"
+  on:
+    branch: master
