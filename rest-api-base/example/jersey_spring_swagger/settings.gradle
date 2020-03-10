@@ -1,0 +1,6 @@
+rootProject.name = 'jersey_spring_swagger'
+include ":rest-api-base"
+project(":rest-api-base").projectDir = file("../../../rest-api-base")
+
+include ":api-response"
+project(":api-response").projectDir = file("../../../rest-api-base/api-response")

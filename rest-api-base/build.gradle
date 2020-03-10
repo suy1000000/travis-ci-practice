@@ -1,0 +1,28 @@
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+
+// 全域設定
+compileJava.options.encoding = 'UTF-8' // 原始碼編譯時的編碼
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	compile project(':api-response')
+	compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.1'
+	compile group: 'io.swagger', name: 'swagger-annotations', version: '1.5.13'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.8'
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+	
+	compile group: 'org.owasp.esapi', name: 'esapi', version: '2.1.0.1'
+	compile group: 'commons-collections', name: 'commons-collections', version: '3.0'
+	compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3'
+	
+	compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+	compile group: 'log4j', name: 'log4j', version: '1.2.17'
+	testCompile group: 'org.testng', name: 'testng', version: '6.9.10'
+	testCompile group: 'org.mockito', name: 'mockito-core', version: '2.+'
+}
